@@ -47,4 +47,7 @@ if [ -n "${DB_HOST:-}" ]; then
     unset MYSQL_PWD
 fi
 
+echo "==> DIAG mods-enabled: $(ls /etc/apache2/mods-enabled/ 2>&1 | tr '\n' ' ')"
+echo "==> DIAG grep mpm in /etc/apache2: $(grep -rl -i mpm /etc/apache2/ 2>/dev/null | tr '\n' ' ')"
+
 exec "$@"
