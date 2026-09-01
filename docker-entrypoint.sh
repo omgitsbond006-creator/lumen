@@ -47,7 +47,10 @@ if [ -n "${DB_HOST:-}" ]; then
     unset MYSQL_PWD
 fi
 
-echo "==> DIAG mods-enabled: $(ls /etc/apache2/mods-enabled/ 2>&1 | tr '\n' ' ')"
-echo "==> DIAG grep mpm in /etc/apache2: $(grep -rl -i mpm /etc/apache2/ 2>/dev/null | tr '\n' ' ')"
+echo "==> Ensuring exactly one Apache MPM (prefork) is enabled"
+rm -f /etc/apache2/mods-enabled/mpm_event.load /etc/apache2/mods-enabled/mpm_event.conf \
+      /etc/apache2/mods-enabled/mpm_worker.load /etc/apache2/mods-enabled/mpm_worker.conf
+ln -sf ../mods-available/mpm_prefork.load /etc/apache2/mods-enabled/mpm_prefork.load
+ln -sf ../mods-available/mpm_prefork.conf /etc/apache2/mods-enabled/mpm_prefork.conf
 
 exec "$@"
