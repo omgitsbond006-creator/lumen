@@ -16,7 +16,8 @@ RUN docker-php-ext-install pdo pdo_mysql
 # AllowOverride All: the app ships an .htaccess (blocks *.sql, disables
 #   directory listing, sets the branded 404 page) — Apache's default is
 #   AllowOverride None, which would silently ignore it.
-RUN a2enmod rewrite headers \
+RUN (a2dismod mpm_event mpm_worker 2>/dev/null || true) \
+    && a2enmod mpm_prefork rewrite headers \
     && echo "ServerName localhost" >> /etc/apache2/apache2.conf \
     && { \
         echo '<Directory /var/www/html/>'; \
