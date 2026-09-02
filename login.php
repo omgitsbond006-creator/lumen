@@ -55,10 +55,9 @@ require __DIR__ . '/partials/public_header.php';
         <button type="submit" class="btn btn-primary btn-block btn-lg">Sign In</button>
       </form>
 
-      <div class="divider-or">or try a demo account</div>
+      <div class="divider-or">Financial Freedom</div>
       <div class="card-sm" style="background:var(--bg-elevated);font-size:12.5px;line-height:1.9;">
-        <b>Investor demo:</b> demo@lumencapital.test / Demo@2026!<br>
-        <b>Admin demo:</b> admin@lumencapital.test / Admin@2026!
+        
       </div>
     </div>
   </div>
